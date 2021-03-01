@@ -9,14 +9,24 @@ requirejs.config({
 // Vue main app
 var app = new Vue({
 	el: '#app',
+	components: {
+		'pawn': Pawn
+	},
 	data: {
-		displayText: ''
+		currentenv: null,
+		displayText: '',
+		pawns: []
 	},
 	methods: {
 		initialized: function () {
 			// Sugarizer initialized
-			var environment = this.$refs.SugarActivity.getEnvironment();
-			this.displayText = "Hello " + environment.user.name + "!";	
-		}
+			this.currentenv = this.$refs.SugarActivity.getEnvironment();
+			this.displayText = "Hello " + this.currentenv.user.name + "!";	
+		},
+
+		onAddClick: function () {
+			this.pawns.push(this.currentenv.user.colorvalue);
+			this.displayText = this.currentenv.user.name + " played";
+		},
 	}
 });

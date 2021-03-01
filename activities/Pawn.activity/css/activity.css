@@ -33,7 +33,9 @@ p {
 	height: 0;
 	overflow: hidden;
 }
-
+#main-toolbar #add-button {
+	background-image: url(../icons/add.svg);
+}
 #main-toolbar #activity-button {
 	background-image: url(../activity/activity-icon.svg);
 }
@@ -119,4 +121,11 @@ p {
 
 .tutorial-icon-text {
 	padding-left: 4px;
+}
+
+.pawn {
+	background-image: url(../icons/pawn-icon.svg);
+	display: inline-block;
+	width: 65px;
+	height: 65px;
 }
