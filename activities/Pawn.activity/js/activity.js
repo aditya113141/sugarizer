@@ -14,19 +14,31 @@ var app = new Vue({
 	},
 	data: {
 		currentenv: null,
+		SugarL10n: null,
 		displayText: '',
-		pawns: []
+		pawns: [],
+		l10n:{
+			stringAddPawn:''
+		}
+	},
+	mounted: function () {
+		this.SugarL10n = this.$refs.SugarL10n;
 	},
 	methods: {
 		initialized: function () {
 			// Sugarizer initialized
 			this.currentenv = this.$refs.SugarActivity.getEnvironment();
-			this.displayText = "Hello " + this.currentenv.user.name + "!";	
+			//this.displayText = this.SugarL10n.get("Hello", { name: this.currentenv.user.name });
+		},
+
+		localized: function () {
+			this.displayText = this.SugarL10n.get("Hello", { name: this.currentenv.user.name });
+			this.SugarL10n.localize(this.l10n);
 		},
 
 		onAddClick: function () {
 			this.pawns.push(this.currentenv.user.colorvalue);
-			this.displayText = this.currentenv.user.name + " played";
+			this.displayText = this.SugarL10n.get("Played", { name: this.currentenv.user.name });
 		},
 
 		onStop: function () {
