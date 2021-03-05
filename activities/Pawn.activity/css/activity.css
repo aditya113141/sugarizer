@@ -132,3 +132,27 @@ p {
 	width: 65px;
 	height: 65px;
 }
+
+.palette-item {
+	width: 200px;
+	height: 30px;
+	padding-top: 15px;
+	padding-left: 10px;
+}
+
+.palette-item:hover {
+	background-color: #808080;
+}
+
+.palette-icon {
+	width: 30px;
+}
+
+.palette-text {
+	vertical-align: super;
+}
+
+.item-icon {
+	padding-top: 3px;
+	height: 40px;
+}

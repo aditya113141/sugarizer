@@ -22,7 +22,15 @@
 			<sugar-toolitem id="activity-button"></sugar-toolitem>
 
 			<!-- Add more buttons here -->
-			<sugar-toolitem id="add-button" v-bind:title="l10n.stringAddPawn" v-on:click="onAddClick"></sugar-toolitem>
+			<sugar-toolitem 
+			id="add-button" 
+			v-bind:title="l10n.stringAddPawn" 
+			palette-file="js/palettes/pawnpalette.js"
+			palette-class="PawnPalette"
+			palette-event="pawn-click"
+			v-on:pawn-click="onAddClick"
+			></sugar-toolitem> 
+			<!-- <sugar-toolitem id="add-button" v-bind:title="l10n.stringAddPawn" v-on:click="onAddClick"></sugar-toolitem> -->
 			<sugar-toolitem 
 			id="network-button" 
 			title="Network"
@@ -32,6 +40,9 @@
 			v-on:shared="SugarPresence.onShared"
 			v-if="SugarPresence"
 			></sugar-toolitem>
+			
+			
+
 			<sugar-toolitem id="insert-button" v-on:click="insertBackground" title="Change Background"></sugar-toolitem>
 
 
