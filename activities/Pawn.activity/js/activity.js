@@ -19,10 +19,12 @@ var app = new Vue({
 		pawns: [],
 		l10n:{
 			stringAddPawn:''
-		}
+		},
+		SugarPresence: null,
 	},
 	mounted: function () {
 		this.SugarL10n = this.$refs.SugarL10n;
+		this.SugarPresence = this.$refs.SugarPresence;
 	},
 	methods: {
 		initialized: function () {
@@ -39,6 +41,17 @@ var app = new Vue({
 		onAddClick: function () {
 			this.pawns.push(this.currentenv.user.colorvalue);
 			this.displayText = this.SugarL10n.get("Played", { name: this.currentenv.user.name });
+		
+			if (this.SugarPresence.isShared()) {
+				var message = {
+					user: this.SugarPresence.getUserInfo(),
+					content: {
+						action: 'update',
+						data: this.currentenv.user.colorvalue
+					}
+				}
+				this.SugarPresence.sendMessage(message);
+			}
 		},
 
 		onStop: function () {
@@ -60,6 +73,37 @@ var app = new Vue({
 		
 		onJournalLoadError: function(error) {
 			console.log("Error loading from journal");
+		},
+
+		onJournalSharedInstance: function() {
+			console.log("Shared instance");
+		},
+
+		onNetworkDataReceived(msg) {
+			// Handles the data-received event
+			switch (msg.content.action) {
+				case 'init':
+					this.pawns = msg.content.data;
+					break;
+				case 'update':
+					this.pawns.push(msg.content.data);
+					this.displayText = this.SugarL10n.get("Played", { name: msg.user.name });
+					break;
+			}
+
+		},
+		
+		onNetworkUserChanged(msg) {
+			// Handles the user-changed event
+			if (this.SugarPresence.isHost) {
+				this.SugarPresence.sendMessage({
+					user: this.SugarPresence.getUserInfo(),
+					content: {
+						action: 'init',
+						data: this.pawns
+					}
+				});
+			}
 		},
 	}
 });
