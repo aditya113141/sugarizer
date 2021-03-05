@@ -105,5 +105,18 @@ var app = new Vue({
 				});
 			}
 		},
+
+		insertBackground: function () {
+			var filters = [
+				{ mimetype: 'image/png' }, 
+				{ mimetype: 'image/jpeg' }
+			];
+			this.$refs.SugarJournal.insertFromJournal(filters)
+				.then(function (data, metadata) {
+					// Do nothing at the moment
+					document.getElementById("app").style.backgroundImage = `url(${data})`;
+					ZZ
+				});
+		},
 	}
 });

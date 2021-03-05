@@ -32,6 +32,8 @@
 			v-on:shared="SugarPresence.onShared"
 			v-if="SugarPresence"
 			></sugar-toolitem>
+			<sugar-toolitem id="insert-button" v-on:click="insertBackground" title="Change Background"></sugar-toolitem>
+
 
 			<!-- Toolitems with class="pull-right" will be right aligned -->
 			<sugar-toolitem id="stop-button" title="Stop" class="pull-right" v-on:click="onStop"></sugar-toolitem>

@@ -43,6 +43,9 @@ p {
 #main-toolbar #network-button {
 	background-image: url(../lib/sugar-web/graphics/icons/actions/zoom-home.svg);
 }
+#main-toolbar #insert-button {
+	background-image: url(../icons/insert-picture.svg);
+}
 #private-button {
 	background-image: url(../lib/sugar-web/graphics/icons/actions/zoom-home.svg);
 	width: 47px;
